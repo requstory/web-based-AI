@@ -8,17 +8,10 @@ from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 from langchain.tools import DuckDuckGoSearchRun
 
-# Set the title of the Streamlit app
-st.title('Web based AI Search')
-st.write(
-    os.environ["OPENAI_API_KEY"] == st.secrets["OPENAI_API_KEY"],
-)
+st.set_page_config(page_title="LangChain: Chat with search", page_icon="🦜")
+st.title("🦜 LangChain: Chat with search")
 
-llm = OpenAI(
-    temperature=0.8,
-    model_name="text-davinci-003"
-)
-
+openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
 if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
 
@@ -28,6 +21,12 @@ for msg in st.session_state.messages:
 if prompt := st.chat_input(placeholder="Who won the Women's U.S. Open in 2018?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
+
+    if not openai_api_key:
+        st.info("Please add your OpenAI API key to continue.")
+        st.stop()
+
+    llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=openai_api_key, streaming=True)
     search_agent = initialize_agent(
         tools=[DuckDuckGoSearchRun(name="Search")],
         llm=llm,
