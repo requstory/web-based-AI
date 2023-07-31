@@ -19,31 +19,29 @@ llm = OpenAI(
     model_name="text-davinci-003"
 )
 
-prompt = PromptTemplate(
-  input_variables=["query"],
-  template="You are New Native Internal Bot. Help users with their important tasks, like a professor in a particular field. Query: {query}"
-)
+if "messages" not in st.session_state:
+    st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
 
-llm_chain = LLMChain(llm=llm, prompt=prompt)
+for msg in st.session_state.messages:
+    st.chat_message(msg["role"]).write(msg["content"])
 
-search = DuckDuckGoSearchRun()
+if prompt := st.chat_input(placeholder="Who won the Women's U.S. Open in 2018?"):
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.chat_message("user").write(prompt)
 
-# Web Search Tool
-search_tool = Tool(
-    name = "Web Search",
-    func=search.run,
-    description="A useful tool for searching the Internet to find information on world events, issues, etc. Worth using for general topics. Use precise questions."
-)
+    if not openai_api_key:
+        st.info("Please add your OpenAI API key to continue.")
+        st.stop()
 
-agent = initialize_agent(
-    agent="zero-shot-react-description",
-    tools=[search_tool],
-    llm=llm,
-    verbose=True, # I will use verbose=True to check process of choosing tool by Agent
-    max_iterations=3
-)
-
-  
-r_1 = st.text_input
-r_1 = agent("Who is the President of Brazil?")
-print(f"Final answer: {r_1['output']}")
+    llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=openai_api_key, streaming=True)
+    search_agent = initialize_agent(
+        tools=[DuckDuckGoSearchRun(name="Search")],
+        llm=llm,
+        agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+        handle_parsing_errors=True,
+    )
+    with st.chat_message("assistant"):
+        st_cb = StreamlitCallbackHandler(st.container(), expand_new_thoughts=False)
+        response = search_agent.run(st.session_state.messages, callbacks=[st_cb])
+        st.session_state.messages.append({"role": "assistant", "content": response})
+        st.write(response)
