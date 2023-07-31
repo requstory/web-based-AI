@@ -11,11 +11,10 @@ from langchain.tools import DuckDuckGoSearchRun
 # Set the title of the Streamlit app
 st.title('Web based AI Search')
 st.write(
-    os.environ[OPENAI_API_KEY] == st.secrets["OPENAI_API_KEY"],
+    os.environ["OPENAI_API_KEY"] == st.secrets["OPENAI_API_KEY"],
 )
 
 llm = OpenAI(
-    openai_api_key=OPENAI_API_KEY,
     temperature=0.8,
     model_name="text-davinci-003"
 )
