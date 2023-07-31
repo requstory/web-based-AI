@@ -1,12 +1,8 @@
-import streamlit as st
-import requests
-import os
-
-from langchain import OpenAI
-from langchain.agents import initialize_agent, load_tools, Tool
-from langchain.chains import LLMChain
-from langchain.prompts import PromptTemplate
+from langchain.agents import initialize_agent, AgentType
+from langchain.callbacks import StreamlitCallbackHandler
+from langchain.chat_models import ChatOpenAI
 from langchain.tools import DuckDuckGoSearchRun
+import streamlit as st
 
 st.set_page_config(page_title="LangChain: Chat with search", page_icon="🦜")
 st.title("🦜 LangChain: Chat with search")
