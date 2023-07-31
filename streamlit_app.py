@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+import os
 
 from langchain import OpenAI
 from langchain.agents import initialize_agent, load_tools, Tool
