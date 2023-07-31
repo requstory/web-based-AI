@@ -28,9 +28,6 @@ for msg in st.session_state.messages:
 if prompt := st.chat_input(placeholder="Who won the Women's U.S. Open in 2018?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
-
-
-    llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=openai_api_key, streaming=True)
     search_agent = initialize_agent(
         tools=[DuckDuckGoSearchRun(name="Search")],
         llm=llm,
