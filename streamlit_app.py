@@ -43,9 +43,6 @@ agent = initialize_agent(
     max_iterations=3
 )
 
-with st.form('my_form'):
-  text = st.text_area('Enter text:', 'What are the three key pieces of advice for learning how to code?')
-  submitted = st.form_submit_button('output')
   
 r_1 = st.text_input
 r_1 = agent("Who is the President of Brazil?")
