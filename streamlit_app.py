@@ -15,7 +15,7 @@ st.write(
 )
 
 llm = OpenAI(
-    openai_api_key=OPENAI_API_KEY,
+    openai_api_key="OPENAI_API_KEY",
     temperature=0.8,
     model_name="text-davinci-003"
 )
