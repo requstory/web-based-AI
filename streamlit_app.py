@@ -25,7 +25,7 @@ if prompt := st.chat_input(placeholder="Who won the Women's U.S. Open in 2018?")
     st.chat_message("user").write(prompt)
 
 
-    llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=OPENAI_API_KEY, streaming=True)
+    llm = ChatOpenAI(model_name="gpt-3.5-turbo", streaming=True)
     search = DuckDuckGoSearchRun(name="Search")
     search_agent = initialize_agent([search], llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, handle_parsing_errors=True)
     with st.chat_message("assistant"):
