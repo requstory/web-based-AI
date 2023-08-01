@@ -6,7 +6,7 @@ from langchain.callbacks import StreamlitCallbackHandler
 from langchain.chat_models import ChatOpenAI
 from langchain.tools import DuckDuckGoSearchRun
 
-st.title("🔎 DocuHelp AI Search ChatBot")
+st.title("👩🏿‍⚕️ AI Search Doc from Docuhelp")
 st.write(
     os.environ["OPENAI_API_KEY"] == st.secrets["OPENAI_API_KEY"],
 )
@@ -14,7 +14,7 @@ st.write(
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
-        {"role": "assistant", "content": 👩🏿‍⚕️ "Hi, I'm Doc from Docuhelp. How can I help you?"}
+        {"role": "assistant", "content":  "Hi, I'm Doc from Docuhelp. How can I help you?"}
     ]
 
 for msg in st.session_state.messages:
