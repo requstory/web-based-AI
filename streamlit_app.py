@@ -14,7 +14,7 @@ st.write(
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
-        {"role": "assistant", "content": "Hi, I'm Doc from Docuhelp. How can I help you?"}
+        {"role": "assistant", "content": 👩🏿‍⚕️ "Hi, I'm Doc from Docuhelp. How can I help you?"}
     ]
 
 for msg in st.session_state.messages:
