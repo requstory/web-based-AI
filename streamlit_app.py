@@ -8,7 +8,7 @@ from langchain.tools import DuckDuckGoSearchRun
 
 st.title("🔎 DocuHelp AI Search ChatBot")
 st.write(
-    os.environ["OPENAI_API_KEY"] == st.secrets["OPENAI_API_KEY"],
+    os.environ["openai_api_key"] == st.secrets["OPENAI_API_KEY"],
 )
 
 
