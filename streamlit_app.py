@@ -11,6 +11,12 @@ st.write(
     os.environ["OPENAI_API_KEY"] == st.secrets["OPENAI_API_KEY"],
 )
 
+with st.sidebar:
+    "Example Search Items"
+    "What is the weather in my City today?"
+    "Suggest birthday gifts for my wife, she likes running"
+    "Who is the Prime Minister of the United Kingdom"
+
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
