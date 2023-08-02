@@ -44,7 +44,7 @@ if prompt := st.chat_input(placeholder="Ask me anything"):
         st.session_state.messages.append({"role": "assistant", "content": response})
         st.write(response)
          
-        st.header(':mailbox: Get in touch with us!')
+        st.write('Like this? Get in touch!')
         
         contact_form = """
         <form action="https://formsubmit.co/9752bf2e61c2863896ec0aa20fe07e8a" method="POST">
