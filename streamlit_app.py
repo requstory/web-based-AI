@@ -44,4 +44,37 @@ if prompt := st.chat_input(placeholder="Ask me anything"):
         st_cb = StreamlitCallbackHandler(st.container(), expand_new_thoughts=False)
         response = search_agent.run(st.session_state.messages, callbacks=[st_cb])
         st.session_state.messages.append({"role": "assistant", "content": response})
-        st.write(response)
+        st.write(response) 
+        
+formbtn = st.button("Form")
+
+if "formbtn_state" not in st.session_state:
+    st.session_state.formbtn_state = False
+
+if formbtn or st.session_state.formbtn_state:
+    st.session_state.formbtn_state = True
+    
+    st.subheader("Contact us")
+    # name = st.text_input("Name")
+    with st.form(key = 'user_info'):
+        st.write('Like this? Lets get you one')
+    
+        name = st.text_input(label="Name 📛")
+        email = st.text_input(label="Email 📧")
+        phone = st.text_input(label="Phone 📱")
+    
+        submit_form = st.form_submit_button(label="Subscribe", help="Click to subscribe!")
+    
+        # Checking if all the fields are non empty
+        if submit_form:
+            st.write(submit_form)
+    
+            if name and email :
+                # add_user_info(id, name, age, email, phone, gender)
+                st.success(
+                            f"ID:  \n Name: {name} \n Email: {email}"
+                        )
+            else:
+                st.warning("Please fill all the fields")
+
+ 
