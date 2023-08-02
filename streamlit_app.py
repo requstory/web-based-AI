@@ -21,31 +21,6 @@ with st.sidebar:
     
     
     "[Write longer documents with Docuhelp.AI](https://docuhelp.ai)"
-    
-
-
-if "messages" not in st.session_state:
-    st.session_state["messages"] = [
-        {"role": "assistant", "content":  "...your AI assistant from Docuhelp. I will help you search the web so you dont have to..."}
-    ]
-
-for msg in st.session_state.messages:
-    st.chat_message(msg["role"]).write(msg["content"])
-
-if prompt := st.chat_input(placeholder="Ask me anything"):
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    st.chat_message("user").write(prompt)
-
-
-    llm = ChatOpenAI(model_name="gpt-3.5-turbo", streaming=True)
-    search = DuckDuckGoSearchRun(name="Search")
-    search_agent = initialize_agent([search], llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, handle_parsing_errors=True)
-    with st.chat_message("assistant"):
-        st_cb = StreamlitCallbackHandler(st.container(), expand_new_thoughts=False)
-        response = search_agent.run(st.session_state.messages, callbacks=[st_cb])
-        st.session_state.messages.append({"role": "assistant", "content": response})
-        st.write(response) 
-        
     formbtn = st.button("Form")
         
         if "formbtn_state" not in st.session_state:
@@ -77,5 +52,27 @@ if prompt := st.chat_input(placeholder="Ask me anything"):
                     else:
                         st.warning("Please fill all the fields")
         
+
+if "messages" not in st.session_state:
+    st.session_state["messages"] = [
+        {"role": "assistant", "content":  "...your AI assistant from Docuhelp. I will help you search the web so you dont have to..."}
+    ]
+
+for msg in st.session_state.messages:
+    st.chat_message(msg["role"]).write(msg["content"])
+
+if prompt := st.chat_input(placeholder="Ask me anything"):
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.chat_message("user").write(prompt)
+
+
+    llm = ChatOpenAI(model_name="gpt-3.5-turbo", streaming=True)
+    search = DuckDuckGoSearchRun(name="Search")
+    search_agent = initialize_agent([search], llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, handle_parsing_errors=True)
+    with st.chat_message("assistant"):
+        st_cb = StreamlitCallbackHandler(st.container(), expand_new_thoughts=False)
+        response = search_agent.run(st.session_state.messages, callbacks=[st_cb])
+        st.session_state.messages.append({"role": "assistant", "content": response})
+        st.write(response)
          
         
