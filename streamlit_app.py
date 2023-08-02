@@ -47,11 +47,9 @@ if prompt := st.chat_input(placeholder="Ask me anything"):
 st.header(':mailbox: Get in touch with us!')
 
 contact_form = """
-<form action="https://formsubmit.co/richard3d7@gmail.com" method="POST">
+<form action="https://formsubmit.co/9752bf2e61c2863896ec0aa20fe07e8a" method="POST">
      <input type="hidden" name="_captcha" value="false">
-     <input type="text" name="name" placeholder='Your name' required>
      <input type="email" name="email" placeholder='Your email' required>
-     <textarea name="message" placeholder="Your message here"></textarea>
      <button type="submit">Send</button>
 </form>
 """
