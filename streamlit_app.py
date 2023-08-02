@@ -13,11 +13,11 @@ st.write(
 
 with st.sidebar:
     "Example Search Items"
-    "What is the weather in my City today?"
-    "Suggest birthday gifts for my wife, she likes running"
-    "Who is the current Prime Minister of the United Kingdom?"
-    "Who is the highest paid footballer in 2023?"
-    "What new movies will be on Netflix this week?"
+    "'What is the weather in my Lagos, Nigeria' today?'"
+    "'Suggest birthday gifts for my wife, she likes running'"
+    "'Who is the current Prime Minister of the United Kingdom?'"
+    "'Who is the highest paid footballer in 2023?'"
+    "'What new movies will be on Netflix this week?'"
     
     
     "[Write longer documents with Docuhelp.AI](https://docuhelp.ai)"
