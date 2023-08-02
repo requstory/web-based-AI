@@ -44,12 +44,11 @@ if prompt := st.chat_input(placeholder="Ask me anything"):
         st.session_state.messages.append({"role": "assistant", "content": response})
         st.write(response)
          
-formbtn = st.button("Form")
-        
-        if "formbtn_state" not in st.session_state:
+    formbtn = st.button("Like this?")
+    if "formbtn_state" not in st.session_state:
             st.session_state.formbtn_state = False
         
-        if formbtn or st.session_state.formbtn_state:
+    if formbtn or st.session_state.formbtn_state:
             st.session_state.formbtn_state = True
             
             st.subheader("Contact us")
