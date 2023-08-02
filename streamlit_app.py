@@ -26,7 +26,7 @@ with st.sidebar:
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
-        {"role": "assistant", "content":  "...your AI assistant from DocuhelpI. I will help you search the web so you dont have to..."}
+        {"role": "assistant", "content":  "...your AI assistant from Docuhelp. I will help you search the web so you dont have to..."}
     ]
 
 for msg in st.session_state.messages:
